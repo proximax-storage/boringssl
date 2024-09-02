@@ -227,7 +227,7 @@ if(FUZZ)
 
   add_definitions(-DBORINGSSL_UNSAFE_DETERMINISTIC_MODE)
   set(RUNNER_ARGS "-deterministic")
-
+B
   if(NOT NO_FUZZER_MODE)
     add_definitions(-DBORINGSSL_UNSAFE_FUZZER_MODE)
     set(RUNNER_ARGS ${RUNNER_ARGS} "-fuzzer" "-shim-config" "fuzzer_mode.json")
@@ -236,6 +236,9 @@ if(FUZZ)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=address,fuzzer-no-link -fsanitize-coverage=edge,indirect-calls")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address,fuzzer-no-link -fsanitize-coverage=edge,indirect-calls")
 endif()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -sNO_DISABLE_EXCEPTION_CATCHING -s USE_BOOST_HEADERS=1 -sUSE_PTHREADS")
+set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -sNO_DISABLE_EXCEPTION_CATCHING -s USE_BOOST_HEADERS=1 -sUSE_PTHREADS")
 
 add_definitions(-DBORINGSSL_IMPLEMENTATION)
 
