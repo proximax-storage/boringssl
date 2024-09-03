@@ -227,7 +227,7 @@ if(FUZZ)
 
   add_definitions(-DBORINGSSL_UNSAFE_DETERMINISTIC_MODE)
   set(RUNNER_ARGS "-deterministic")
-B
+
   if(NOT NO_FUZZER_MODE)
     add_definitions(-DBORINGSSL_UNSAFE_FUZZER_MODE)
     set(RUNNER_ARGS ${RUNNER_ARGS} "-fuzzer" "-shim-config" "fuzzer_mode.json")
